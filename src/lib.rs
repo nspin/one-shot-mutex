@@ -10,9 +10,15 @@
 
 mod mutex;
 mod rwlock;
+mod unsync;
 
 pub use mutex::{OneShotMutex, OneShotMutexGuard, RawOneShotMutex};
 pub use rwlock::{
     OneShotRwLock, OneShotRwLockReadGuard, OneShotRwLockUpgradableReadGuard,
     OneShotRwLockWriteGuard, RawOneShotRwLock,
+};
+pub use unsync::mutex::{RawUnsyncOneShotMutex, UnsyncOneShotMutex, UnsyncOneShotMutexGuard};
+pub use unsync::rwlock::{
+    RawUnsyncOneShotRwLock, UnsyncOneShotRwLock, UnsyncOneShotRwLockReadGuard,
+    UnsyncOneShotRwLockUpgradableReadGuard, UnsyncOneShotRwLockWriteGuard,
 };
