@@ -36,6 +36,18 @@ pub struct RawUnsyncOneShotMutex {
     lock: Cell<bool>,
 }
 
+impl RawUnsyncOneShotMutex {
+    pub const fn new() -> Self {
+        Self::INIT
+    }
+}
+
+impl Default for RawUnsyncOneShotMutex {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 unsafe impl RawMutex for RawUnsyncOneShotMutex {
     #[allow(clippy::declare_interior_mutable_const)]
     const INIT: Self = Self {

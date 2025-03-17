@@ -48,6 +48,10 @@ const UPGRADABLE: usize = 1 << 1;
 const EXCLUSIVE: usize = 1;
 
 impl RawUnsyncOneShotRwLock {
+    pub const fn new() -> Self {
+        Self::INIT
+    }
+
     #[inline]
     fn over_state(&self, f: impl FnOnce(usize) -> usize) -> usize {
         let old = self.lock.get();
@@ -77,6 +81,12 @@ impl RawUnsyncOneShotRwLock {
         }
 
         value
+    }
+}
+
+impl Default for RawUnsyncOneShotRwLock {
+    fn default() -> Self {
+        Self::new()
     }
 }
 
